@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Complain
+{% endblock %}
+
+{% block main %}
+<form class="row g-3" action="/complain" method="post">
+    <div class="col-md-6">
+      <label for="name" class="form-label">Name:</label>
+      <input type="text" class="form-control" id="name" name="name" required="required">
+    </div>
+    <div class="col-md-6">
+      <label for="email" class="form-label">Email:</label>
+      <input type="email" class="form-control" id="email" name="email" required="required">
+    </div>
+    <div class="col-12">
+      <label for="problem" class="form-label">Problem Title:</label>
+      <input type="text" class="form-control" id="problem" placeholder="ex: Login issue" name="problem" required="required">
+    </div>
+    <div class="col-12">
+        <label for="details" class="form-label">Details:</label>
+        <textarea type="text" class="form-control" name="details"  required="required" rows="3"></textarea>
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">Submit</button>
+    </div>
+</form>
+{% endblock %}

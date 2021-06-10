@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Scans
+{% endblock %}
+
+{% block main %}
+<form action="/scans" method="post">
+    <div class="form-group">
+        <caption>Scans</caption>
+        <table style="width:100%">
+            <tr>
+                <th>ID</th>
+                <th>Price</th>
+                <th>Date of Publish</th>
+                <th>State</th>
+                <th>Time</th>
+            </tr>
+                {% for i in range(length) %}
+            <tr>
+                <th>{{book[i]}}</th>
+                <th>{{price[i]}} $</th>
+                <th>{{DoR[i]}}</th>
+                <th>{{state[i]}}</th>
+                <th>{{time[i]}}</th>
+            </tr>
+                {% endfor %}
+                {% for i in range(length2) %}
+            <tr>
+                <th>{{balancestate[i]}}</th>
+                <th></th>
+                <th></th>
+                <th>{{balance[i]}}$</th>
+                <th>{{balancetime[i]}}</th>
+            </tr>
+                {% endfor %}
+        </table>
+    </div>
+</form>
+{% endblock %}

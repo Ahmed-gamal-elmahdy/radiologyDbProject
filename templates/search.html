@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+{% block main %}
+{% if rows %}
+
+<table class="table table-bordered">
+    <thead>
+    {% if isStaff %}
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">SSN</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Schedule</th>
+        <th scope="col">Job</th>
+      </tr>
+    {% else %}
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">SSN</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Age</th>
+        <th scope="col">History</th>
+        <th scope="col">Phone</th>
+      </tr>
+    {% endif %}
+    </thead>
+    <tbody>
+    {% for i in range(len) %}
+      <tr>
+        <th scope="row">{{i+1}}</th>
+        <td>{{rows[i][2]}}</td>
+        <td>{{rows[i][3]}}</td>
+        <td>{{rows[i][5]}}</td>
+        {% if isStaff %}
+        <td>{{rows[i][6]}}</td>
+        <td>{{rows[i][7]}}</td>
+        {% else %}
+        <td>{{rows[i][4]}}</td>
+        <td>{{rows[i][6]}}</td>
+        <td>{{rows[i][7]}}</td>
+        {% endif %}
+      </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% else %}
+
+<form action="/search" method="post">
+    <div class="form-group">
+        <div class="form-group row">
+            <legend class="col-form-label col-sm-2 pt-0">Choose Type:</legend>
+            <div class="col-sm-10">
+            <select class="form-select" aria-label="Default select example" name="accounttype">
+              <option value="staff">Staff</option>
+              <option value="patients">Patients</option>
+            </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <legend class="col-form-label col-sm-2 pt-0">Search by:</legend>
+            <div class="col-sm-10">
+            <select class="form-select" aria-label="Default select example" name="searchtype">
+              <option value="SSN">SSN</option>
+              <option value="Name">Name</option>
+            </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="q" class="col-sm-2 col-form-label">keyword:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="q">
+              
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-10">
+              <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+          </div>
+    </div>
+</form>
+{% endif %}
+{% endblock %}
